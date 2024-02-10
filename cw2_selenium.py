@@ -41,6 +41,30 @@ InputMenu.click()
 Disable = driver.find_element("xpath", "//*[@id='main']/table[2]/tbody/tr[8]/td[1]/a")
 Disable.click()
 
+# klikniecie 'try it yourself'
+TryIt = driver.find_element("xpath", "//*[@id='main']/div[2]/a")
+TryIt.click()
+
+# sprawdzenie, gdzie jest skryp, w którym oknie
+print("Aktualne okno: " + driver.title)
+
+# obecne okno
+currentWindowName = driver.current_window_handle
+
+# wszystkie okna
+windowsNames = driver.window_handles
+
+# przełączenie do nowego okna
+for window in windowsNames:
+    if window != currentWindowName:
+        driver.switch_to.window(window)
+
+print("Okno po przełączeniu: " + driver.title)
+
+# wypełnienie pola input fname - first name
+FirstName = driver.find_element("id", "fname")
+FirstName.send_keys("Natalia")
+
 # zatrzymaj się na chwilkę
 # sleep może być użyty wielokrotnie, zatrzymuje skrypt w danym momencie na określoną ilość czasu
 time.sleep(500)
