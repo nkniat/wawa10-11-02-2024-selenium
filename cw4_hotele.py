@@ -46,5 +46,10 @@ assert hotels_name[1] == "Oasis Beach Tower"
 assert hotels_name[2] == "Rose Rayhaan Rotana"
 assert hotels_name[3] == "Hyatt Regency Perth"
 
+# pobranie cen
+prices = driver.find_elements("xpath","//div[contains(@class, 'price_tab')]//b")
+prices_list = [price.get_attribute('textContent') for price in prices]
+print(prices_list)
+
 time.sleep(500)
 driver.quit()
