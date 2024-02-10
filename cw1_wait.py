@@ -36,10 +36,20 @@ HTMLTutorial.click()
 # explicit wait
 wait = WebDriverWait(driver, 10, 0.5)
 wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="leftmenuinnerinner"]/a[43]')))
+# dwfiniowane własnego warunk - sprawdzanie długości listy
+#wait.until(lambda x: len(x.find_elements("xpath", "//*[@id='leftmenuinnerinner']/a[43]")))
 
 # Input types
 InputTypes = driver.find_element("xpath", "//*[@id='leftmenuinnerinner']/a[43]")
 InputTypes.click()
+
+# Przesuniecie (wizualne) do danego elementu na stronie
+InputFirstName = driver.find_element("name", "firstname")
+actions = webdriver.ActionChains(driver).move_to_element(InputFirstName).perform()
+
+# Input Submit
+InputFirstName = driver.find_element("name", "firstname")
+print(InputFirstName.get_attribute("value"))
 
 # zatrzymaj się na chwilkę
 # sleep może być użyty wielokrotnie, zatrzymuje skrypt w danym momencie na określoną ilość czasu
