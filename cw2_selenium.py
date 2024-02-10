@@ -29,8 +29,17 @@ webdriver.ActionChains(driver).move_to_element(menu).click().perform()
 HTMLTutorial = driver.find_element("xpath", "//a[@title='HTML Tutorial']")
 HTMLTutorial.click()
 
+# przejscie do HTML Tag List
+TagList = driver.find_element("xpath", "//*[@id='leftmenuinnerinner']/a[67]")
+TagList.click()
 
+# przejscie do <input>
+InputMenu = driver.find_element("xpath", "//*[@id='leftmenuinnerinner']/div/a[59]")
+InputMenu.click()
 
+# przejscie do 'disable'
+Disable = driver.find_element("xpath", "//*[@id='main']/table[2]/tbody/tr[8]/td[1]/a")
+Disable.click()
 
 # zatrzymaj się na chwilkę
 # sleep może być użyty wielokrotnie, zatrzymuje skrypt w danym momencie na określoną ilość czasu
