@@ -80,7 +80,43 @@ driver.close()
 driver.switch_to.window(currentWindowName)
 print("Okno po zamknieciu: " + driver.title)
 
+# cofniecie się
+driver.back()
 
+# przejście do checkboxa
+CheckBox = driver.find_element("xpath", "//*[@id='main']/table[2]/tbody/tr[6]/td[1]/a")
+CheckBox.click()
+
+TryIt = driver.find_element("xpath", "//*[@id='main']/div[2]/a")
+TryIt.click()
+
+# obecne okno
+currentWindowName = driver.current_window_handle
+
+# wszystkie okna
+windowsNames = driver.window_handles
+
+# przełączenie do nowego okna
+for window in windowsNames:
+    if window != currentWindowName:
+        driver.switch_to.window(window)
+
+print("Okno po przełączeniu: " + driver.title)
+
+# przelączenie się do iframe - strony wewnatrz strony
+driver.switch_to.frame(driver.find_element("id", "iframeResult"))
+
+# zaznaczanie checkboxa - to tylko zwykłe klikanie
+car = driver.find_element("name", "vehicle2")
+car.click()
+
+if car.is_selected():
+    print("Jest zaznaczone")
+
+# zamkniecie bieżącej zakładki
+driver.close()
+driver.switch_to.window(currentWindowName)
+print("Okno po zamknieciu: " + driver.title)
 
 # zatrzymaj się na chwilkę
 # sleep może być użyty wielokrotnie, zatrzymuje skrypt w danym momencie na określoną ilość czasu
