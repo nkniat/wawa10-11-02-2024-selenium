@@ -34,6 +34,17 @@ childInput.send_keys("1")
 search = driver.find_element("xpath", "//*[@id='hotels']/form/div[5]/button")
 search.click()
 
+# pobranie listy hoteli
+hotels = driver.find_elements("xpath", "//h4[contains(@class, 'list_title')]//b")
+hotels_name = [hotel.get_attribute("textContent") for hotel in hotels]
+
+for name in hotels_name:
+    print("Znalazlem takie hotele: ", name)
+
+assert hotels_name[0] == "Jumeirah Beach Hotel"
+assert hotels_name[1] == "Oasis Beach Tower"
+assert hotels_name[2] == "Rose Rayhaan Rotana"
+assert hotels_name[3] == "Hyatt Regency Perth"
 
 time.sleep(500)
 driver.quit()
