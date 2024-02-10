@@ -61,9 +61,26 @@ for window in windowsNames:
 
 print("Okno po przełączeniu: " + driver.title)
 
+# przelączenie się do iframe - strony wewnatrz strony
+driver.switch_to.frame(driver.find_element("id", "iframeResult"))
+
 # wypełnienie pola input fname - first name
 FirstName = driver.find_element("id", "fname")
 FirstName.send_keys("Natalia")
+
+# wypełnienie pola input lname - last name
+LastName = driver.find_element("id", "lname")
+if LastName.is_enabled():
+    LastName.send_keys("Burda")
+else:
+    print("Nie da się wpisać")
+
+# zamkniecie bieżącej zakładki
+driver.close()
+driver.switch_to.window(currentWindowName)
+print("Okno po zamknieciu: " + driver.title)
+
+
 
 # zatrzymaj się na chwilkę
 # sleep może być użyty wielokrotnie, zatrzymuje skrypt w danym momencie na określoną ilość czasu
