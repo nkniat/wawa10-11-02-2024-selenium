@@ -1,3 +1,4 @@
+import logging
 from page_object_pattern.locators.locators import SearchHotelLocators
 
 
@@ -5,6 +6,7 @@ class SearchHotelPage:
 
     def __init__(self, driver):
         self.driver = driver
+        self.logger = logging.getLogger(__name__)
 
         #wprowadzenie miasta
         self.search_hotel_span_xpath = SearchHotelLocators.search_hotel_span_xpath
@@ -41,17 +43,20 @@ class SearchHotelPage:
 
     # metoda wprowadzająca dane miasto
     def set_city(self, city):
+        self.logger.info("Setting city {}".format(city))
         self.driver.find_element("xpath", self.search_hotel_span_xpath).click()
         self.driver.find_element("xpath", self.search_hotel_input_xpath).send_keys(city)
         self.driver.find_element("xpath", self.location_match_xpath).click()
 
     # metoda ustawiajac czas przyjazdu i wyjazdu
     def set_date_range(self, check_in, check_out):
+        self.logger.info("Setting check-in date {checkin} and check-out date {checkout}".format(checkin=check_in, checkout=check_out))
         self.driver.find_element("name", self.check_in_input_name).send_keys(check_in)
         self.driver.find_element("name", self.check_out_input_name).send_keys(check_out)
 
     # metoda ustawiajaca liczbe dorosłych i dzieci
     def set_travellers(self, adults, child):
+        self.logger.info("Setting travellers: {adults} x adults and {children} x kids".format(adults=adults, children=child))
         self.driver.find_element("id", self.travellers_input_id).click()
         # dorośli
         self.driver.find_element("id", self.adult_input_id).clear()
@@ -62,4 +67,5 @@ class SearchHotelPage:
 
     # metoda uruchamiajaca wyszukiwanie
     def perform_search(self):
+        self.logger.info("Perform searching!")
         self.driver.find_element("xpath", self.search_button_xpath).click()
