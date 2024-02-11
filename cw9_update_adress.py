@@ -26,7 +26,7 @@ def test_update_adress():
 
     #select - jak wybrac element z listy
     # to do
-    Select(driver.find_element('id', 'select2-billing_country-container')).select_by_visible_text("Poland")
+    Select(driver.find_element('id', 'billing_country')).select_by_visible_text("Poland")
 
     # do dopisania
     # pamietaj o assercji
